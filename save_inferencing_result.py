@@ -3,17 +3,6 @@ import nibabel as nib
 import matplotlib.pyplot as plt
 
 def save_segmentation_visualization(t2_path, organ_path, lesion_path, output_dir, slice_index=None):
-    """
-    Save T2 image, organ segmentation, and lesion segmentation visualizations.
-
-    Args:
-        t2_path (str): Path to T2-weighted NIfTI image.
-        organ_path (str): Path to organ segmentation NIfTI image.
-        lesion_path (str): Path to lesion segmentation NIfTI image.
-        output_dir (str): Directory where output images will be saved.
-        slice_index (int, optional): Axial slice index to visualize. Defaults to center slice.
-    """
-
     # Create output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
 
@@ -55,7 +44,7 @@ def save_segmentation_visualization(t2_path, organ_path, lesion_path, output_dir
     plt.close()
 
     # Save overlay image
-    plt.figure(figsize=(5, 5))
+    plt.figure(figsize=(50, 50))
     plt.imshow(t2_data[:, :, slice_index].T, cmap="gray")
     plt.imshow(organ_data[:, :, slice_index].T, cmap="jet", alpha=0.5)
     plt.imshow(lesion_data[:, :, slice_index].T, cmap="hot", alpha=0.5)
@@ -70,9 +59,9 @@ def save_segmentation_visualization(t2_path, organ_path, lesion_path, output_dir
     print(f"Saved visualizations to:\n- {individual_path}\n- {overlay_path}")
 
 
-save_segmentation_visualization(
-    t2_path="output/t2/t2.nii.gz",
-    organ_path="output/organ/organ.nii.gz",
-    lesion_path="output/lesion/lesion_mask.nii.gz",
-    output_dir="visualizations"
-)
+# save_segmentation_visualization(
+#     t2_path="output/t2/t2.nii.gz",
+#     organ_path="output/organ/organ.nii.gz",
+#     lesion_path="output/lesion/lesion_mask.nii.gz",
+#     output_dir="visualizations"
+# )
